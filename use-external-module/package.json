@@ -1,0 +1,15 @@
+{
+  "name": "use-externam-module",
+  "version": "0.12.7",
+  "description": "learn use externam-module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "luob",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3",
+    "utility": "^1.4.0"
+  }
+}
