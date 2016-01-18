@@ -23,10 +23,12 @@ let robin = {
   cmmyName: '云聚',
 };
 
+
 let saveNewUser = (user, callback) => {
   let _user = new User(user);
   _user.save(callback);
 }
+
 
 let getUserByName = (name, callback) => {
   User.findOne({name: name}, callback);
@@ -39,12 +41,18 @@ let getUsersByNames = (names, callback) => {
   User.find({name: {$in: names}}, callback);
 }
 
+let updateUserPass = (name, pass, callback) => {
+  User.update({name: name}, {$set: {pass: pass}}, callback);
+}
+
+/*
 saveNewUser(robin, (err) => {
   if (err) {
     return console.log(err);
   }
   console.log('save success');
 });
+*/
 
 getUserByName('luob', (err, user) => {
   if (err) {
@@ -61,4 +69,11 @@ getUsersByNames(['luob', 'daniela'], (err, users) => {
   for (let user of users) {
     console.log(user.uname + ',' + user.create_at_ago());
   }
+});
+
+updateUserPass('robin22333', '654321', function(err) {
+  if (err) {
+    return console.log(err);
+  }
+  console.log('update success');
 });
