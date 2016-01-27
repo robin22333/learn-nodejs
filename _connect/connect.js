@@ -5,7 +5,6 @@ const url = require('url');
 
 let proto = {};
 let app = null;
-// add middlleware
 
 let createServer = function() {
   app = function(req, res) {
