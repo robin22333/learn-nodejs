@@ -7,13 +7,13 @@ const superagent = require('superagent')
 let getTopicUrls = (ruby_china_url) => {
   return new Promise((relsove, reject) => {
     superagent.get(ruby_china_url + '/topics')
-      .end(function(err, res) {
+      .end((err, res) => {
         if (err) {
-            return reject(err);
+          return reject(err);
         }
         let $ = cheerio.load(res.text);
         let topicsUrl = [];
-        $('.topic .title a').each(function(i, e) {
+        $('.topic .title a').each((i, e) => {
           let $e = $(e);
           let href = url.resolve(ruby_china_url, $e.attr('href'));
           topicsUrl.push(href);
@@ -28,12 +28,11 @@ let getToicTitle = (topicUrl) => {
     superagent.get(topicUrl)
       .end((err, res) => {
         if (err) {
-          reject(err);
-        } else {
-          let $ = cheerio.load(res.text);
-          let title = $('.media-heading').text();
-          relsove(title);
+          return reject(err);
         }
+        let $ = cheerio.load(res.text);
+        let title = $('.media-heading').text();
+        relsove(title);
       });
   });
 }
