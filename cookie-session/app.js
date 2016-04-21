@@ -29,9 +29,11 @@ app.use((req, res, next) => {
         return;
       }
       req.session.user = user;
+      next();
     });
+  } else {
+    next();
   }
-  next();
 });
 
 app.get('/', (req, res) => {
@@ -65,5 +67,7 @@ let findByUsername = (username, callback) => {
     pass: '123456',
     email: 'luobin1105@qq.com'
   }
-  callback(null, user);
+  process.nextTick(() => {
+      callback(null, user);
+  });
 }
